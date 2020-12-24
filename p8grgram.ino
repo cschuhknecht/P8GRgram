@@ -6,9 +6,11 @@
 String ssid  = "mySSID"; // REPLACE mySSID WITH YOUR WIFI SSID
 String pass  = "myPassword"; // REPLACE myPassword YOUR WIFI PASSWORD, IF ANY
 String token = "myToken"; // REPLACE myToken WITH YOUR TELEGRAM BOT TOKEN
-int64_t chat_id = myID; // REPLACE myId WITH YOUR TELEGRAM CHAT ID
+int64_t chat_id = myId; // REPLACE myId WITH YOUR TELEGRAM CHAT ID
 
 
+int test_break = 40;
+int test_count = 0;
 
 String text = "myText"; // REPLACE myText WITH YOUR MESSAGE TEXT
 
@@ -28,22 +30,28 @@ void setup() {
   myBot.setTelegramToken(token);
 
 
-  if (myBot.testConnection()){
-    Serial.println("\ntestConnection OK");
-  }
-      
-  else{
-    Serial.println("\ntestConnection NOK");  
-  }
-}
-
-
-void loop() {
+  while (test_count != test_break){ // Versucht die Verbindung X mal herzustellen. Man könnte auch einen delay davor einbauen damit es in 100% der fälle beim ersten mal klappt. aber ich will so schnell wie möglich rückmeldung.
+    // check if all things are ok
+    
+    if (myBot.testConnection()){
+      Serial.println("\ntestConnection OK");
   
-  TBMessage msg;
-  msg.group.id = chat_id;
-  Serial.println(int64ToAscii(msg.group.id));
-  msg.text = text;
-  myBot.sendMessage(msg.group.id, msg.text);
-  delay(5000);
+      TBMessage msg;
+      msg.group.id = chat_id;
+      //Serial.println(int64ToAscii(msg.group.id));
+      msg.text = text;
+      myBot.sendMessage(msg.group.id, msg.text);
+  
+      test_count = test_break;
+    }
+      
+    else{
+      Serial.println("\ntestConnection NOK");
+      test_count += 1;
+      Serial.println(test_count);
+      delay(500);
+    }
+  }
 }
+
+void loop() {}
