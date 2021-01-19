@@ -11,6 +11,8 @@ The Project uses an ESP8266 (if you don't know what that is, you could call it a
 
 Telegram is a good choice because it has an open API that can be easily accessed and because there are bots in Telegram. When an alarm comes in, the ESP is powered and the program flashed to it runs once. The program accesses our bot and it can then post a message to a private chat, group or channel.
 
+In the following there are further explanations on how to flash the code on your ESP, but also have a look at the code it has many explanatory comments.
+
 ## Dependencies / how to flash
 Obvious dependency number one: 1x ESP8266 (I used a WeMos D1 mini)
 
