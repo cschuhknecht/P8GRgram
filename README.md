@@ -1,5 +1,5 @@
 # P8GRgram
-Code for ESP8266 to send a Notification via Telegram when an alarm goes off.
+Code for ESP8266 to send a Notification via Telegram if an alarm goes off.
 
 ![](images/main_image.jpg)
 
